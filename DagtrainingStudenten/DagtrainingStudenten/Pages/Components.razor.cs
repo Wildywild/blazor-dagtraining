@@ -34,6 +34,29 @@ namespace DagtrainingStudenten.Pages
 			}
 		};
 
+		public bool ShowConfirmDelete { get; set; }
+		public Wuppie WuppieToDelete { get; set; }
+
+		void Ok()
+		{
+			Console.WriteLine("ok");
+			ShowConfirmDelete = false;
+			Wuppies.Remove(WuppieToDelete);
+			WuppieToDelete = null;
+		}
+		void Cancel()
+		{
+			Console.WriteLine("cancel");
+			ShowConfirmDelete = false;
+			WuppieToDelete = null;
+		}
+
+		public void ConfirmDelete(Wuppie wuppie)
+		{
+			ShowConfirmDelete = true;
+			WuppieToDelete = wuppie;
+		}
+
 		public void HandleSelect(object objWuppie)
 		{
 			var wuppie = objWuppie as Wuppie;

@@ -1,0 +1,36 @@
+﻿@typeparam TItem
+
+	<div class="shader">
+		<div class="modal-outer">
+			<header>@Title</header>
+
+			<main>@BodyTemplate(Item)</main>
+
+			<footer>
+				<button @onclick="HandleOk">Ok</button>
+				<button @onclick="HandleCancel">Annuleer</button>
+			</footer>
+		</div>
+	</div>
+
+	@code {
+		[Parameter] public string Title { get; set; }
+
+		[Parameter] public TItem Item { get; set; }
+
+		[Parameter] public RenderFragment<TItem> BodyTemplate { get; set; }
+
+		[Parameter] public EventCallback OnOk { get; set; }
+
+		[Parameter] public EventCallback OnCancel { get; set; }
+
+		async Task HandleOk()
+		{
+			await OnOk.InvokeAsync();
+		}
+
+		async Task HandleCancel()
+		{
+			await OnCancel.InvokeAsync();
+		}
+	}

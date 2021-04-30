@@ -14,3 +14,18 @@
 	</ItemTemplate>
 </Autocompleter>
 
+@if (ShowConfirmDelete)
+{
+	<Modal Title="Bevestig verwijderen" Item="WuppieToDelete" Context="wuppie" OnOk="Ok" OnCancel="Cancel">
+		<BodyTemplate>
+			Weet u zeker dat u @wuppie.Name wenst te verwijderen?
+		</BodyTemplate>
+	</Modal>
+}
+
+<ul>
+	@foreach (var wuppie in Wuppies)
+	{
+		<li>@wuppie.Name is @wuppie.Color <button @onclick="@(() => ConfirmDelete(wuppie))">Verwijder</button> </li>
+	}
+</ul>
