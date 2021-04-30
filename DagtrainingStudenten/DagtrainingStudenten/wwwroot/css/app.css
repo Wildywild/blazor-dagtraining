@@ -52,3 +52,7 @@ a, .btn-link {
 .orange {
     background: orange;
 }
+
+td img {
+    max-width: 150px;
+}

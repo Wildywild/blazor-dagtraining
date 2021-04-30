@@ -1,10 +1,38 @@
 ﻿@page "/basics"
 @using DagtrainingStudenten.Entities
 
-Hallo vanuit basics page 2
 
-naam: @Naam
-<button @onclick="VeranderNaam">Verander naam</button>
+<EditForm Model="NewWuppie" OnValidSubmit="AddWuppie">
+	<DataAnnotationsValidator />
+
+	<ValidationSummary />
+
+	<ol>
+		<li>
+			<label for="input-name">Naam:</label>
+			<InputText @bind-Value="NewWuppie.Name" id="input-name" />
+			<ValidationMessage For="@(() => NewWuppie.Name)" />
+		</li>
+		<li>
+			<label for="input-color">Kleur:</label>
+			<InputText @bind-Value="NewWuppie.Color" id="input-color" />
+			<ValidationMessage For="@(() => NewWuppie.Color)" />
+		</li>
+		<li>
+			<label for="input-photo-url">Foto URL:</label>
+			<InputText @bind-Value="NewWuppie.PhotoUrl" id="input-photo-url" />
+			<ValidationMessage For="@(() => NewWuppie.PhotoUrl)" />
+		</li>
+		<li>
+			<button>Voeg wuppie toe</button>
+		</li>
+	</ol>
+
+	naam: @NewWuppie.Name<br>
+	kleur: @NewWuppie.Color<br>
+	url: @NewWuppie.PhotoUrl
+
+</EditForm>
 
 <table>
 	<thead>

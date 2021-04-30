@@ -9,6 +9,8 @@ namespace DagtrainingStudenten.Pages
 {
 	public partial class Basics
 	{
+		public Wuppie NewWuppie { get; set; } = new Wuppie();
+
 		List<Wuppie> Wuppies = new List<Wuppie>
 		{
 			new Wuppie
@@ -34,11 +36,11 @@ namespace DagtrainingStudenten.Pages
 			}
 		};
 
-		public string Naam { get; set; } = "JP";
-
-		void VeranderNaam()
+		void AddWuppie()
 		{
-			Naam += "Sem";
+			NewWuppie.Id = Wuppies.Max(x => x.Id) + 1;
+			Wuppies.Add(NewWuppie);
+			NewWuppie = new Wuppie();
 		}
 	}
 }
