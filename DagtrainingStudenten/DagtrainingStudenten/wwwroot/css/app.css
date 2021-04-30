@@ -56,3 +56,7 @@ a, .btn-link {
 td img {
     max-width: 150px;
 }
+.highlight {
+    background: lightgoldenrodyellow;
+}
+

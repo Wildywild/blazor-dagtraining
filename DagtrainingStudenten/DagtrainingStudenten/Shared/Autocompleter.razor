@@ -1,0 +1,19 @@
+﻿@typeparam TItem
+
+
+<input @bind-value="Query" @bind-value:event="oninput" @onkeyup="Autocomplete" @onkeydown="HandleKeyDown">
+
+
+@if (Suggestions == null)
+{
+	<p>Geen suggesties nog</p>
+}
+else
+{
+	<ul>
+		@foreach (var suggestion in Suggestions)
+		{
+			@ItemTemplate(suggestion)
+		}
+	</ul>
+}

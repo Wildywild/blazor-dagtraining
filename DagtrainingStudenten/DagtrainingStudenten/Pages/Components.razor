@@ -1,0 +1,16 @@
+﻿@page "/components"
+
+
+<h2>Components</h2>
+
+<Loading Message="Ik ben druk bezig met rekenen..." />
+<Loading Message="Ik ben druk bezig met data ophalen..." />
+<Loading Message="Ik ben druk bezig met klanten te verwerken..." />
+
+
+<Autocompleter Data="Wuppies" OnSelect="HandleSelect" Context="suggestion">
+	<ItemTemplate>
+		<li class="@(suggestion.IsHighlighted ? "highlight" : "")">@suggestion.Item.Name is @suggestion.Item.Color</li>
+	</ItemTemplate>
+</Autocompleter>
+
