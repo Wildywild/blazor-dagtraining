@@ -1,0 +1,61 @@
+﻿@page "/internals"
+@using DagtrainingStudenten.Entities
+@using System.Threading 
+
+<h2>Internals</h2>
+
+<h3>Change detection</h3>
+
+@*
+	Angular - (click)="..." change detectors voor ieder component  = iedere databinding expressie gaan ze af
+	Vue 3 - Proxies  get/set
+	React - .setState() - virtual DOM (geen renderproces)
+	Blazor - @onclick="Func" - RenderTree
+*@
+
+
+Counter: @Count
+
+<button @onclick="StartCounting">Start counting</button>
+<button @onclick="DoNothing">Doe niks</button>
+
+
+<h3>JavaScript interop</h3>
+
+<button @onclick="GetJavaScriptString">Get string uit JavaScript</button>
+
+<button @onclick="DoGeolocation">Doe geolocation</button>
+
+@code {
+	[Inject] IJSRuntime JSRuntime { get; set; }
+
+	public int Count{ get; set; } = 10;
+
+	void DoNothing()
+	{
+
+	}
+
+	void StartCounting()
+	{
+		Console.WriteLine("Counter starten");
+		new Timer(new TimerCallback(_ =>
+		{
+			Console.WriteLine("Count is nu " + Count);
+			Count--;
+			StateHasChanged();
+		}), null, 1000, 1000);
+	}
+
+	async Task GetJavaScriptString()
+	{
+		var result = await JSRuntime.InvokeAsync<string>("getSimpleString", "hoi");
+		Console.WriteLine("result uit JS: " + result);
+	}
+
+	async Task DoGeolocation()
+	{
+		var result = await JSRuntime.InvokeAsync<GeolocationResult>("doeGeolocation");
+		Console.WriteLine($"lat/long/acc: {result.Latitude} {result.Longitude} {result.Accuracy}");
+	}
+}

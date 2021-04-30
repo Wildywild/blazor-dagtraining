@@ -34,24 +34,32 @@
 
 </EditForm>
 
-<table>
-	<thead>
-		<tr>
-			<th>ID</th>
-			<th>Wuppie</th>
-			<th>Kleur</th>
-			<th>Foto</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var wuppie in Wuppies)
-		{
-			<tr class="@(wuppie.Color == "Orange" ? "orange" : "")">
-				<td>@wuppie.Id</td>
-				<td>@wuppie.Name</td>
-				<td>@wuppie.Color</td>
-				<td><img src="@wuppie.PhotoUrl"></td>
+@if (Wuppies == null || Wuppies.Count == 0)
+{
+	<Loading Message="Ik ben druk bezig met wuppies ophalen..." />
+
+}
+else
+{
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Wuppie</th>
+				<th>Kleur</th>
+				<th>Foto</th>
 			</tr>
-		}
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+			@foreach (var wuppie in Wuppies)
+			{
+				<tr class="@(wuppie.Color == "Orange" ? "orange" : "")">
+					<td>@wuppie.Id</td>
+					<td>@wuppie.Name</td>
+					<td>@wuppie.Color</td>
+					<td><img src="@wuppie.PhotoUrl"></td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
