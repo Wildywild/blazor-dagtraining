@@ -1,0 +1,29 @@
+﻿@page "/basics"
+@using DagtrainingStudenten.Entities
+
+Hallo vanuit basics page 2
+
+naam: @Naam
+<button @onclick="VeranderNaam">Verander naam</button>
+
+<table>
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Wuppie</th>
+			<th>Kleur</th>
+			<th>Foto</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var wuppie in Wuppies)
+		{
+			<tr class="@(wuppie.Color == "Orange" ? "orange" : "")">
+				<td>@wuppie.Id</td>
+				<td>@wuppie.Name</td>
+				<td>@wuppie.Color</td>
+				<td><img src="@wuppie.PhotoUrl"></td>
+			</tr>
+		}
+	</tbody>
+</table>
